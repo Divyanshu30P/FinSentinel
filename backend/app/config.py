@@ -19,9 +19,9 @@ class Settings(BaseModel):
     MAX_IMAGE_SIZE_MB: int = 5
     ALLOWED_IMAGE_TYPES: list = ["image/jpeg", "image/png", "image/webp"]
     
-    # Demo User Credentials
+    # Preloaded Showcase User Credentials
     DEMO_USER_EMAIL: str = "demo@upishield.local"
     DEMO_USER_PASSWORD: str = "DemoShield@2026"
-    DEMO_USER_NAME: str = "Hackathon Judge"
+    DEMO_USER_NAME: str = "Aditya Sharma"
 
 settings = Settings()

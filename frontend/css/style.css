@@ -215,17 +215,104 @@ body {
   font-weight: 700;
 }
 
-.demo-pill {
+.shield-status-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 20px;
-  background: rgba(85, 153, 255, 0.15);
-  border: 1px solid rgba(85, 153, 255, 0.3);
-  color: var(--accent-secondary);
-  font-size: 0.75rem;
+  background: rgba(53, 201, 154, 0.12);
+  border: 1px solid rgba(53, 201, 154, 0.35);
+  color: var(--accent-primary);
+  font-size: 0.78rem;
   font-weight: 600;
+}
+
+.shield-status-pill.personal {
+  background: rgba(85, 153, 255, 0.12);
+  border-color: rgba(85, 153, 255, 0.35);
+  color: var(--accent-secondary);
+}
+
+.user-menu-wrapper {
+  position: relative;
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 250px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  padding: 8px 0;
+  display: none;
+  z-index: 200;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+.user-dropdown-menu.active {
+  display: block;
+}
+
+.user-dropdown-header {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.user-dropdown-item:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.user-dropdown-item.danger {
+  color: var(--danger);
+}
+
+.user-dropdown-item.danger:hover {
+  background-color: rgba(240, 93, 101, 0.1);
+}
+
+.modal-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.modal-tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.modal-tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.modal-tab-btn.active {
+  background: rgba(53, 201, 154, 0.15);
+  color: var(--accent-primary);
 }
 
 .topbar-right {

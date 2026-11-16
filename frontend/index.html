@@ -81,19 +81,51 @@
     <header class="topbar">
       <div class="topbar-left">
         <h2 class="page-title" id="current-page-title">Security Overview</h2>
-        <span class="demo-pill">
-          <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Demo Mode Active
+        <span class="shield-status-pill" id="platform-mode-badge">
+          <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> Live Protection Active
         </span>
       </div>
 
       <div class="topbar-right">
-        <button class="btn btn-secondary btn-sm" id="btn-reset-demo" title="Reset to original hackathon judge baseline">
-          <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i> Reset Demo Data
+        <button class="btn btn-secondary btn-sm" id="btn-open-auth-modal">
+          <i data-lucide="user-plus" style="width: 14px; height: 14px;"></i> Sign In / Register
         </button>
-        <button class="user-profile-btn" id="btn-user-profile">
-          <div class="user-avatar" id="user-avatar-initials">HJ</div>
-          <span id="user-display-name">Hackathon Judge</span>
-        </button>
+
+        <div class="user-menu-wrapper">
+          <button class="user-profile-btn" id="btn-user-profile">
+            <div class="user-avatar" id="user-avatar-initials">AS</div>
+            <span id="user-display-name">Aditya Sharma</span>
+            <i data-lucide="chevron-down" style="width: 14px; height: 14px; margin-left: 4px;"></i>
+          </button>
+
+          <!-- User Dropdown Menu -->
+          <div class="user-dropdown-menu" id="user-dropdown-menu">
+            <div class="user-dropdown-header">
+              <div style="font-weight: 700; font-size: 0.9rem;" id="dropdown-user-name">Aditya Sharma</div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);" id="dropdown-user-email">demo@upishield.local</div>
+            </div>
+            <div class="user-dropdown-item" onclick="window.app.openAuthModal('register')">
+              <i data-lucide="user-plus" style="width: 16px; height: 16px;"></i>
+              <span>Create Free Account (Normal Mode)</span>
+            </div>
+            <div class="user-dropdown-item" onclick="window.app.openAuthModal('login')">
+              <i data-lucide="log-in" style="width: 16px; height: 16px;"></i>
+              <span>Sign In to Existing Account</span>
+            </div>
+            <div class="user-dropdown-item" onclick="window.app.switchToDemoAccount()">
+              <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+              <span>Switch to Showcase Profile</span>
+            </div>
+            <div class="user-dropdown-item" onclick="window.app.resetDemoData()">
+              <i data-lucide="rotate-ccw" style="width: 16px; height: 16px;"></i>
+              <span>Reset Showcase Baseline</span>
+            </div>
+            <div class="user-dropdown-item danger" onclick="window.app.logoutUser()">
+              <i data-lucide="log-out" style="width: 16px; height: 16px;"></i>
+              <span>Sign Out</span>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -696,6 +728,76 @@
       </div>
       <button type="submit" class="btn btn-primary" style="width: 100%;">Analyze Transaction</button>
     </form>
+  </div>
+</div>
+
+<!-- MODAL: AUTHENTICATION (NORMAL MODE & SHOWCASE SWITCHER) -->
+<div class="modal-overlay" id="modal-auth">
+  <div class="modal-box" style="max-width: 480px;">
+    <button class="modal-close" onclick="window.app.closeModal('modal-auth')">&times;</button>
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+      <div class="brand-icon" style="width: 32px; height: 32px;">
+        <i data-lucide="shield-alert" style="width: 18px; height: 18px;"></i>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 700;">Account & Protection Mode</h3>
+    </div>
+
+    <!-- Tabs -->
+    <div class="modal-tabs">
+      <button class="modal-tab-btn active" id="tab-btn-login" onclick="window.app.switchAuthTab('login')">Sign In</button>
+      <button class="modal-tab-btn" id="tab-btn-register" onclick="window.app.switchAuthTab('register')">Create Free Account</button>
+    </div>
+
+    <!-- Tab Content: Sign In -->
+    <div id="auth-panel-login">
+      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 16px;">
+        Sign in to your personal UPI Shield account to perform custom fraud checks and manage your analysis history.
+      </p>
+      <form id="form-auth-login">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="auth-login-email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="auth-login-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+          <i data-lucide="log-in"></i> Sign In to Account
+        </button>
+      </form>
+    </div>
+
+    <!-- Tab Content: Register -->
+    <div id="auth-panel-register" style="display: none;">
+      <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 16px;">
+        Create a new personal account to use UPI Shield in <strong>Normal Mode</strong> with your own isolated security analyses.
+      </p>
+      <form id="form-auth-register">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="auth-register-name" class="form-control" placeholder="e.g. Rahul Verma" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="auth-register-email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password (min 6 characters)</label>
+          <input type="password" id="auth-register-password" class="form-control" minlength="6" placeholder="Create a secure password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+          <i data-lucide="user-check"></i> Register & Enter Normal Mode
+        </button>
+      </form>
+    </div>
+
+    <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-color); text-align: center;">
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">Looking for the pre-populated sample environment?</div>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="window.app.switchToDemoAccount()" style="width: 100%;">
+        <i data-lucide="sparkles"></i> Switch to Showcase Profile (Aditya Sharma)
+      </button>
+    </div>
   </div>
 </div>
 

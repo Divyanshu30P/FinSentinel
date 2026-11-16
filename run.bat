@@ -6,8 +6,8 @@ color 0A
 cd /d "%~dp0"
 
 echo ======================================================================
-echo              UPI SHIELD - FINANCIAL SCAM DETECTION PLATFORM          
-echo              Arthaton: AI for Finance Hackathon Submission           
+echo              UPI SHIELD - FINANCIAL FRAUD DETECTION PLATFORM          
+echo              AI-Powered Digital Payment Cybersecurity Defense         
 echo ======================================================================
 echo.
 
@@ -35,9 +35,11 @@ echo.
 echo [INFO] Starting UPI Shield Server on http://127.0.0.1:8000
 echo [INFO] API Swagger Documentation: http://127.0.0.1:8000/docs
 echo.
-echo Demo User Credentials for Hackathon Judges:
+echo Showcase Profile Credentials (Pre-seeded with Sample Scenarios):
 echo Email:    demo@upishield.local
 echo Password: DemoShield@2026
+echo.
+echo Note: You can also register a fresh personal account in Normal Mode.
 echo ======================================================================
 echo.
 

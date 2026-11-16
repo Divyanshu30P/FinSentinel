@@ -10,8 +10,8 @@ from backend.app.models.notification import FraudAlert
 
 def seed_demo_data(db: Session) -> User:
     """
-    Seeds initial demo user, realistic fraud analyses, transaction records,
-    and fraud alerts for hackathon judges.
+    Seeds initial showcase user, realistic fraud analyses, transaction records,
+    and fraud alerts for testing and evaluation.
     """
     # 1. Find or create demo user
     demo_user = db.query(User).filter(User.email == settings.DEMO_USER_EMAIL).first()
@@ -25,6 +25,9 @@ def seed_demo_data(db: Session) -> User:
         db.add(demo_user)
         db.commit()
         db.refresh(demo_user)
+    elif demo_user.username == "Hackathon Judge":
+        demo_user.username = settings.DEMO_USER_NAME
+        db.commit()
 
     # Check if demo analyses already exist
     existing_analyses = db.query(FraudAnalysis).filter(FraudAnalysis.user_id == demo_user.id).count()
@@ -202,7 +205,7 @@ def seed_demo_data(db: Session) -> User:
         db.add(rec)
 
     db.commit()
-    print("Demo data successfully seeded for Hackathon Judge account.")
+    print("Initial showcase dataset successfully seeded.")
     return demo_user
 
 def reset_demo_data(db: Session, user: User):

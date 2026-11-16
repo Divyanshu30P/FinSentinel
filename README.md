@@ -11,7 +11,7 @@
 
 **Detect • Analyse • Protect**
 
-*A hackathon-ready financial cybersecurity platform designed to protect Indian digital payment users from fraudulent UPI collect requests, phishing communications, and suspicious financial transaction patterns.*
+*An open-source financial cybersecurity platform designed to protect Indian digital payment users from fraudulent UPI collect requests, phishing communications, and suspicious financial transaction patterns.*
 
 </div>
 
@@ -24,18 +24,17 @@
 4. [System Architecture](#-system-architecture)
 5. [Machine Learning Methodology & Evaluation](#-machine-learning-methodology--evaluation)
 6. [Technology Stack](#-technology-stack)
-7. [Screenshots & UI Showcase](#-screenshots--ui-showcase)
-8. [Installation & Local Setup on Windows](#-installation--local-setup-on-windows)
-9. [Hackathon Demo Account & Credentials](#-hackathon-demo-account--credentials)
-10. [REST API Documentation](#-rest-api-documentation)
-11. [Ethical Safeguards & Privacy Notice](#-ethical-safeguards--privacy-notice)
-12. [Limitations & Future Scope](#-limitations--future-scope)
+7. [Installation & Local Setup on Windows](#-installation--local-setup-on-windows)
+8. [User Accounts & Modes](#-user-accounts--modes)
+9. [REST API Documentation](#-rest-api-documentation)
+10. [Ethical Safeguards & Privacy Notice](#-ethical-safeguards--privacy-notice)
+11. [Limitations & Future Scope](#-limitations--future-scope)
 
 ---
 
 ## 🛡️ Project Overview
 
-**UPI Shield** is an AI-powered financial fraud detection platform built for **Arthaton – AI for Finance**. 
+**UPI Shield** is an AI-powered financial fraud detection platform built for the Indian digital payment landscape.
 
 With India's Unified Payments Interface (UPI) processing over 14 billion transactions monthly, everyday users face an escalating onslaught of social engineering attacks: deceptive collect requests claiming you must enter your PIN to receive money, fake electricity disconnection warnings, cloned bank KYC portals, and rapid nocturnal account drains.
 
@@ -45,6 +44,7 @@ UPI Shield combines:
 - **Rule-based Security Heuristics** with critical PIN deception overrides.
 - **AI-Powered Contextual Explanations** (via Gemini API with fallback to deterministic expert explainers).
 - **Client-side visual text highlighting** and **Screenshot OCR analysis**.
+- **Normal Mode (Public Live Usage)**: Multi-tenant user registration and secure authentication with data isolation, alongside a pre-seeded showcase environment.
 
 > **Note on Ethical Design**: UPI Shield is an analytical and defense tool. It never asks for, captures, or stores actual UPI PINs, bank passwords, or OTPs. It does not process live payments and does not claim official affiliation with NPCI or banks.
 
@@ -68,7 +68,7 @@ In the Indian digital payments ecosystem:
   - `PIN_TO_RECEIVE` (*CRITICAL*): Detects instructions demanding a PIN to claim rewards, refunds, or advance money.
   - `UNEXPECTED_UNFAMILIAR`: Flags unsolicited payment requests from unfamiliar VPAs.
   - `IMPERSONATION_HANDLE`: Flags lookalike VPA keywords (`refund`, `support`, `cashback`, `officer`).
-  - `LOTTERY_BAIT` & `MARKETPLACE_DECEPTION`: Detects OLX Army buyer lures and scratch card claims.
+  - `LOTTERY_BAIT` & `MARKETPLACE_DECEPTION`: Detects marketplace advance lures and scratch card claims.
 - **Output**: 0–100 risk score, risk category (Low/Medium/High), triggered red flags, contextual explanation, and actionable defense guidance.
 
 ### Module 2: Phishing Message Detection
@@ -103,6 +103,7 @@ flowchart TD
         M3_UI["Transaction Analyser"]
         UI_Hist["Audit History Log"]
         UI_OCR["Screenshot OCR Dropzone"]
+        UI_Auth["Normal Mode Auth (Register / Login)"]
     end
 
     subgraph Backend["FastAPI REST Backend (Python 3.10 - 3.14)"]
@@ -155,7 +156,7 @@ Confusion Matrix:
   True Positives (Phishing):   87
 ============================================================
 ```
-*Run `python ml\evaluate.py` anytime to reproduce and verify these exact metrics.*
+*Run `python ml\evaluate.py` anytime to verify these exact metrics.*
 
 ### Transaction Anomaly Model
 - **Algorithm**: `IsolationForest(n_estimators=100, contamination=0.10, random_state=42)`.
@@ -234,14 +235,17 @@ Double-click `run.bat` in the project root. It will:
 
 ---
 
-## 🔑 Hackathon Demo Account & Credentials
+## 👤 User Accounts & Modes
 
-The application is pre-seeded with a complete demo environment so judges can explore every capability immediately:
+### 1. Normal Mode (Public Live Usage)
+Any user can click **Sign In / Register** in the top navigation bar to create their own free personal account. All analyses, custom uploaded transaction CSVs, and scam scans are strictly isolated under that user's account.
 
+### 2. Pre-seeded Showcase Profile
+A sample profile is preloaded with authentic attack scenarios (night velocity drain, electricity scam SMS, fake Diwali collect request) to demonstrate platform capabilities:
 - **Email**: `demo@upishield.local`
 - **Password**: `DemoShield@2026`
-- **Role**: Hackathon Judge
-- **Reset Demo Data**: Click the **Reset Demo Data** button in the top navigation bar at any time to restore the baseline dataset.
+- **Profile Name**: Aditya Sharma
+- **Reset Showcase Data**: Use the **Reset Showcase Baseline** option from the user menu to restore original sample data at any time.
 
 ---
 
@@ -253,7 +257,7 @@ The application is pre-seeded with a complete demo environment so judges can exp
 | `POST` | `/api/auth/login` | Authenticate and obtain JWT token |
 | `GET` | `/api/auth/me` | Retrieve profile of authenticated user |
 | `GET` | `/api/dashboard/summary` | Aggregate statistics and recent alerts |
-| `POST` | `/api/dashboard/reset-demo` | Restore clean judge evaluation data |
+| `POST` | `/api/dashboard/reset-demo` | Restore clean showcase evaluation data |
 | `POST` | `/api/fraud/analyze-collect-request` | Module 1: Scan UPI collect request |
 | `POST` | `/api/fraud/analyze-message` | Module 2: Scan SMS/WhatsApp text with NLP |
 | `POST` | `/api/fraud/analyze-transactions` | Module 3: Batch anomaly detection |
@@ -285,6 +289,6 @@ The application is pre-seeded with a complete demo environment so judges can exp
 - **OCR Dependencies**: On Windows installations lacking the system-level Tesseract binary, the OCR module seamlessly falls back to pre-parsed screenshot templates for testing.
 
 ### Future Scope
-- Integration with Android SMS BroadcastReceivers via a lightweight companion app to flag scam SMS in real-time.
+- Integration with Android SMS BroadcastReceivers via a companion app to flag scam SMS in real-time.
 - Multilingual support for Hindi, Tamil, Telugu, and Bengali phishing messages.
 - Graph Neural Network (GNN) analysis across interconnected scam mule VPA networks.
