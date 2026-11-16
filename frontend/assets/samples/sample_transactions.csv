@@ -1,0 +1,25 @@
+transaction_id,timestamp,amount,transaction_type,recipient_vpa,description,status
+UPI1002,2026-11-06 10:46:16,66.0,DEBIT,motherdairy@paytm,Daily Milk & Curd,SUCCESS
+UPI1001,2026-11-06 15:42:24,500.0,DEBIT,metro.recharge@dmrc,Delhi Metro Card Top-up,SUCCESS
+UPI1004,2026-11-07 15:48:48,240.0,DEBIT,priya.patel@okhdfcbank,Shared cab fare,SUCCESS
+UPI1003,2026-11-07 19:28:26,1299.0,DEBIT,amazon.pay@apl,Amazon Shopping,SUCCESS
+UPI1005,2026-11-07 21:27:37,240.0,DEBIT,priya.patel@okhdfcbank,Shared cab fare,SUCCESS
+UPI1006,2026-11-08 09:09:44,240.0,DEBIT,priya.patel@okhdfcbank,Shared cab fare,SUCCESS
+UPI1007,2026-11-08 14:45:37,1800.0,DEBIT,blinkit@kotak,Blinkit Groceries,SUCCESS
+UPI1009,2026-11-09 12:39:25,1420.0,DEBIT,bses.bill@sbi,BSES Electricity Bill,SUCCESS
+UPI1008,2026-11-09 16:08:48,620.0,DEBIT,swiggy@icici,Swiggy Order Food,SUCCESS
+UPI1011,2026-11-10 09:35:46,132.0,DEBIT,motherdairy@paytm,Daily Milk & Curd,SUCCESS
+UPI1010,2026-11-10 15:19:45,85000.0,CREDIT,company.payroll@sbi,Monthly Salary Credit,SUCCESS
+UPI1012,2026-11-11 12:30:47,520.0,DEBIT,zomato@hdfcbank,Zomato Food Delivery,SUCCESS
+UPI1013,2026-11-11 16:38:15,850.0,DEBIT,amazon.pay@apl,Amazon Shopping,SUCCESS
+UPI1014,2026-11-12 10:12:47,943.0,DEBIT,airtel.pay@airtel,Airtel Fiber Broadband,SUCCESS
+UPI1015,2026-11-12 19:26:31,380.0,DEBIT,starbucks@icici,Starbucks Coffee,SUCCESS
+UPI1016,2026-11-13 12:35:24,280.0,DEBIT,swiggy@icici,Swiggy Order Food,SUCCESS
+UPI1017,2026-11-13 17:29:45,700.0,DEBIT,rahul.sharma@okaxis,Dinner split with Rahul,SUCCESS
+UPI1018,2026-11-13 18:30:40,180.0,DEBIT,priya.patel@okhdfcbank,Shared cab fare,SUCCESS
+UPI1021,2026-11-14 09:12:20,350.0,DEBIT,zomato@hdfcbank,Zomato Food Delivery,SUCCESS
+UPI1019,2026-11-14 14:47:46,500.0,DEBIT,metro.recharge@dmrc,Delhi Metro Card Top-up,SUCCESS
+UPI1020,2026-11-14 17:42:17,132.0,DEBIT,motherdairy@paytm,Daily Milk & Curd,SUCCESS
+UPI1022,2026-11-15 02:41:10,19999.0,DEBIT,fastcash.winner77@paytm,UPI Collect Approval,SUCCESS
+UPI1023,2026-11-15 02:45:10,25000.0,DEBIT,crypto.exchange.p2p@okaxis,Express Transfer P2P,SUCCESS
+UPI1024,2026-11-15 02:49:10,49999.0,DEBIT,lottery.refund.claim@ybl,Authorization PIN entered,SUCCESS

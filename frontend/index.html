@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPI Shield - AI-Powered Financial Scam & Fraud Detection</title>
+  <link rel="stylesheet" href="/frontend/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div class="app-container">
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <i data-lucide="shield-alert"></i>
+      </div>
+      <div class="brand-text">
+        <h1>UPI SHIELD</h1>
+        <p>Detect • Analyse • Protect</p>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <div class="nav-section-title">Core Modules</div>
+      <a class="nav-item active" data-view="dashboard">
+        <i data-lucide="layout-dashboard"></i>
+        <span>Overview</span>
+      </a>
+      <a class="nav-item" data-view="collect-scanner">
+        <i data-lucide="arrow-down-left"></i>
+        <span>Collect Request Scanner</span>
+      </a>
+      <a class="nav-item" data-view="phishing-detector">
+        <i data-lucide="mail-warning"></i>
+        <span>Phishing Detector</span>
+      </a>
+      <a class="nav-item" data-view="transaction-analyser">
+        <i data-lucide="activity"></i>
+        <span>Transaction Analyser</span>
+      </a>
+
+      <div class="nav-section-title">Monitoring & Insights</div>
+      <a class="nav-item" data-view="fraud-alerts">
+        <i data-lucide="bell"></i>
+        <span>Fraud Alerts</span>
+        <span class="badge" id="nav-alert-badge">3</span>
+      </a>
+      <a class="nav-item" data-view="analysis-history">
+        <i data-lucide="history"></i>
+        <span>Analysis History</span>
+      </a>
+      <a class="nav-item" data-view="security-insights">
+        <i data-lucide="book-open"></i>
+        <span>Security Insights</span>
+      </a>
+      <a class="nav-item" data-view="settings-view">
+        <i data-lucide="settings"></i>
+        <span>System Status</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="system-status">
+        <div class="status-dot"></div>
+        <span>AI & ML Engines Active</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="main-wrapper">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2 class="page-title" id="current-page-title">Security Overview</h2>
+        <span class="demo-pill">
+          <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Demo Mode Active
+        </span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="btn btn-secondary btn-sm" id="btn-reset-demo" title="Reset to original hackathon judge baseline">
+          <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i> Reset Demo Data
+        </button>
+        <button class="user-profile-btn" id="btn-user-profile">
+          <div class="user-avatar" id="user-avatar-initials">HJ</div>
+          <span id="user-display-name">Hackathon Judge</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <main class="content-body">
+      <!-- 1. OVERVIEW DASHBOARD VIEW -->
+      <section class="view-section active" id="view-dashboard">
+        <!-- Quick Action Cards -->
+        <div class="quick-actions-bar">
+          <div class="quick-action-card" onclick="window.app.switchView('collect-scanner')">
+            <div class="stat-icon primary"><i data-lucide="arrow-down-left"></i></div>
+            <div>
+              <h3>Scan Collect Request</h3>
+              <p>Verify unexpected UPI money collect requests & PIN lures</p>
+            </div>
+          </div>
+          <div class="quick-action-card" onclick="window.app.switchView('phishing-detector')">
+            <div class="stat-icon blue"><i data-lucide="message-square-warning"></i></div>
+            <div>
+              <h3>Detect Phishing SMS</h3>
+              <p>Analyze power bill, KYC & reward messages with NLP ML</p>
+            </div>
+          </div>
+          <div class="quick-action-card" onclick="window.app.switchView('transaction-analyser')">
+            <div class="stat-icon warning"><i data-lucide="trending-up"></i></div>
+            <div>
+              <h3>Analyse Transactions</h3>
+              <p>Upload statement or scan velocity & off-hours anomalies</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Stats Cards -->
+        <div class="grid-4" style="margin-bottom: 24px;">
+          <div class="card stat-card">
+            <div class="stat-icon primary"><i data-lucide="shield-check"></i></div>
+            <div class="stat-content">
+              <div class="stat-label">Total Analyzed</div>
+              <div class="stat-value" id="stat-total-analyzed">0</div>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon danger"><i data-lucide="alert-triangle"></i></div>
+            <div class="stat-content">
+              <div class="stat-label">High-Risk Threats</div>
+              <div class="stat-value" id="stat-high-risk">0</div>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon warning"><i data-lucide="alert-circle"></i></div>
+            <div class="stat-content">
+              <div class="stat-label">Medium-Risk Warnings</div>
+              <div class="stat-value" id="stat-medium-risk">0</div>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon blue"><i data-lucide="file-check"></i></div>
+            <div class="stat-content">
+              <div class="stat-label">Transactions Scanned</div>
+              <div class="stat-value" id="stat-transactions">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i data-lucide="bar-chart-3"></i> Fraud Detection Activity</div>
+            </div>
+            <div style="height: 250px;">
+              <canvas id="chart-activity"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i data-lucide="pie-chart"></i> Threat Risk Distribution</div>
+            </div>
+            <div style="height: 250px;">
+              <canvas id="chart-risk"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Analyses Table -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><i data-lucide="clock"></i> Recent Security Assessments</div>
+            <button class="btn btn-secondary btn-sm" onclick="window.app.switchView('analysis-history')">View Full History</button>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Summary / Content</th>
+                  <th>Risk Level</th>
+                  <th>Risk Score</th>
+                  <th>Timestamp</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-recent-table">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. COLLECT REQUEST SCANNER VIEW (MODULE 1) -->
+      <section class="view-section" id="view-collect-scanner">
+        <div class="card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div>
+              <div class="card-title"><i data-lucide="arrow-down-left"></i> Fake UPI Collect Request Detection</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                Identify malicious UPI collect requests, deceptive payment descriptions, and PIN harvesting tactics.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sample Scenarios Chips -->
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Try Sample Attack Scenarios:</div>
+            <div class="preset-chips">
+              <button class="chip" onclick="window.collectScanner.loadPreset('diwali_reward')">Diwali Reward PIN Scam (High Risk)</button>
+              <button class="chip" onclick="window.collectScanner.loadPreset('olx_buyer')">OLX Buyer Advance Collect (High Risk)</button>
+              <button class="chip" onclick="window.collectScanner.loadPreset('electricity_legit')">Legitimate Utility Collect (Low Risk)</button>
+            </div>
+          </div>
+
+          <form id="form-collect-scanner">
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Sender Name / Merchant Label</label>
+                <input type="text" id="collect-sender-name" class="form-control" placeholder="e.g. Diwali Reward Desk" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sender UPI ID / VPA</label>
+                <input type="text" id="collect-sender-vpa" class="form-control" placeholder="e.g. cashback.reward@okhdfcbank" required>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Requested Amount (₹ INR)</label>
+                <input type="number" step="0.01" id="collect-amount" class="form-control" placeholder="e.g. 4999.00" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Payment Request Description</label>
+                <input type="text" id="collect-description" class="form-control" placeholder="e.g. Enter UPI PIN to claim reward">
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="toggle-group">
+                <div>
+                  <div style="font-weight: 600; font-size: 0.88rem;">Did you expect this collect request?</div>
+                  <div style="font-size: 0.76rem; color: var(--text-secondary);">Unexpected requests are common scam triggers</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="collect-expected">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-group">
+                <div>
+                  <div style="font-weight: 600; font-size: 0.88rem;">Is this sender familiar to you?</div>
+                  <div style="font-size: 0.76rem; color: var(--text-secondary);">Have you transacted with them before?</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="collect-known">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Accompanying Instructions or Message (Optional)</label>
+              <textarea id="collect-message" class="form-control" style="min-height: 80px;" placeholder="e.g. Tap accept and enter your 6-digit UPI PIN to receive money in your account"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <button type="submit" class="btn btn-primary" id="btn-analyze-collect">
+                <i data-lucide="scan"></i> Analyze Collect Request
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('ocr-collect-file').click()">
+                <i data-lucide="camera"></i> Upload Screenshot (OCR)
+              </button>
+              <input type="file" id="ocr-collect-file" style="display: none;" accept="image/*" onchange="window.collectScanner.handleScreenshotUpload(event)">
+            </div>
+          </form>
+
+          <!-- Result Container -->
+          <div class="result-box" id="collect-result-box">
+            <div class="risk-header">
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase;">Assessment Outcome</div>
+                <div class="risk-badge" id="collect-risk-badge">HIGH RISK</div>
+              </div>
+              <div class="risk-score-display" id="collect-risk-score">92 <span>/ 100</span></div>
+            </div>
+
+            <!-- AI / Deterministic Explanation -->
+            <div class="explanation-card">
+              <h4><i data-lucide="sparkles"></i> AI Security Analysis & Context</h4>
+              <p id="collect-explanation-text">Analyzing...</p>
+            </div>
+
+            <!-- Red Flags List -->
+            <div style="font-weight: 700; font-size: 0.95rem; margin-top: 16px;">Detected Warning Indicators:</div>
+            <div class="indicators-list" id="collect-indicators-list"></div>
+
+            <!-- Actionable Recommendations -->
+            <div style="font-weight: 700; font-size: 0.95rem; margin-top: 16px;">Recommended Safety Actions:</div>
+            <ul id="collect-recommendations-list" style="margin-left: 20px; font-size: 0.88rem; color: var(--text-secondary); margin-top: 8px;"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PHISHING DETECTOR VIEW (MODULE 2) -->
+      <section class="view-section" id="view-phishing-detector">
+        <div class="card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div>
+              <div class="card-title"><i data-lucide="mail-warning"></i> Financial Phishing & SMS Scam Detector</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                Trained NLP Model (TF-IDF + Logistic Regression) + Rule Engine with Suspicious Text Highlighting.
+              </p>
+            </div>
+          </div>
+
+          <!-- 8 Sample Buttons -->
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Load Real-World Test Presets:</div>
+            <div class="preset-chips">
+              <button class="chip" onclick="window.phishingDetector.loadSample('electricity')">⚡ Electricity Bill Threat</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('sbi_kyc')">🏦 YONO SBI KYC Deactivation</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('account_blocked')">⚠️ NetBanking Account Suspended</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('phonepe_reward')">🎁 PhonePe Cashback Scratch Card</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('kbc_lottery')">🏆 KBC Season Lucky Winner</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('anydesk_support')">💻 AnyDesk Screen Share Refund</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('legit_debit')">✅ Legitimate HDFC UPI Debit</button>
+              <button class="chip" onclick="window.phishingDetector.loadSample('legit_otp')">✅ Legitimate Bank OTP Alert</button>
+            </div>
+          </div>
+
+          <form id="form-phishing-detector">
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label class="form-label" style="margin: 0;">Message Content (SMS, WhatsApp, Email, or Web Notification)</label>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="window.phishingDetector.pasteClipboard()">
+                  <i data-lucide="clipboard" style="width: 14px; height: 14px;"></i> Paste from Clipboard
+                </button>
+              </div>
+              <textarea id="phishing-message-input" class="form-control" placeholder="Paste the suspicious SMS, WhatsApp message or email text here..." required></textarea>
+            </div>
+
+            <!-- OCR Text preview if loaded -->
+            <div id="ocr-notice-container" style="display: none; margin-bottom: 16px; padding: 12px; background: rgba(85, 153, 255, 0.1); border: 1px solid var(--accent-secondary); border-radius: var(--radius-md);">
+              <div style="font-size: 0.82rem; color: var(--accent-secondary); font-weight: 600;" id="ocr-notice-text"></div>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <button type="submit" class="btn btn-primary" id="btn-analyze-phishing">
+                <i data-lucide="sparkles"></i> Run AI Phishing Analysis
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('ocr-phishing-file').click()">
+                <i data-lucide="image"></i> Upload Screenshot
+              </button>
+              <input type="file" id="ocr-phishing-file" style="display: none;" accept="image/*" onchange="window.phishingDetector.handleScreenshotUpload(event)">
+            </div>
+          </form>
+
+          <!-- Result Container -->
+          <div class="result-box" id="phishing-result-box">
+            <div class="risk-header">
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase;">NLP + Rule Assessment</div>
+                <div class="risk-badge" id="phishing-risk-badge">HIGH RISK</div>
+              </div>
+              <div style="text-align: right;">
+                <div class="risk-score-display" id="phishing-risk-score">96 <span>/ 100</span></div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);" id="phishing-ml-confidence">ML Model Confidence: 99.4%</div>
+              </div>
+            </div>
+
+            <!-- Highlighted Phishing Text Box -->
+            <div style="font-weight: 700; font-size: 0.95rem; margin-top: 12px;">Visual Threat Breakdown (Flagged Content Highlighted):</div>
+            <div class="highlight-text-box" id="phishing-highlight-box"></div>
+
+            <!-- AI / Rule Explanation -->
+            <div class="explanation-card">
+              <h4><i data-lucide="sparkles"></i> AI Contextual Explanation</h4>
+              <p id="phishing-explanation-text">Analyzing...</p>
+            </div>
+
+            <!-- Red Flags List -->
+            <div style="font-weight: 700; font-size: 0.95rem; margin-top: 16px;">Detected Technical Red Flags:</div>
+            <div class="indicators-list" id="phishing-indicators-list"></div>
+
+            <!-- Safety Recommendations -->
+            <div style="font-weight: 700; font-size: 0.95rem; margin-top: 16px;">Actionable Safety Guidance:</div>
+            <ul id="phishing-recommendations-list" style="margin-left: 20px; font-size: 0.88rem; color: var(--text-secondary); margin-top: 8px;"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. TRANSACTION ANALYSER VIEW (MODULE 3) -->
+      <section class="view-section" id="view-transaction-analyser">
+        <div class="card" style="margin-bottom: 24px;">
+          <div class="card-header">
+            <div>
+              <div class="card-title"><i data-lucide="activity"></i> Suspicious Transaction & Anomaly Analyser</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                Isolation Forest ML Model + Behavioral Velocity & Off-Hours Statistical Anomaly Engine.
+              </p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button class="btn btn-primary btn-sm" id="btn-load-demo-statement">
+                <i data-lucide="download"></i> Load Demo Statement
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-manual-tx-modal">
+                <i data-lucide="plus"></i> Add Transaction
+              </button>
+            </div>
+          </div>
+
+          <!-- Dropzone for CSV Statements -->
+          <div class="dropzone" id="tx-dropzone" onclick="document.getElementById('csv-file-input').click()">
+            <div class="dropzone-icon"><i data-lucide="upload-cloud"></i></div>
+            <div style="font-weight: 600; font-size: 1rem;">Upload Bank / UPI Statement CSV</div>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px;">
+              Drag and drop your statement file here, or click to browse (Max 5MB)
+            </p>
+            <input type="file" id="csv-file-input" style="display: none;" accept=".csv" onchange="window.txDetector.handleCSVUpload(event)">
+          </div>
+
+          <!-- Transactions Summary Banner -->
+          <div id="tx-summary-banner" style="display: none; margin-top: 24px; padding: 16px; background-color: var(--bg-input); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div class="grid-4">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Total Records</div>
+                <div style="font-size: 1.3rem; font-weight: 700;" id="tx-stat-total">0</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Anomalies Detected</div>
+                <div style="font-size: 1.3rem; font-weight: 700; color: var(--danger);" id="tx-stat-anomalies">0</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">High-Risk Debits</div>
+                <div style="font-size: 1.3rem; font-weight: 700; color: var(--danger);" id="tx-stat-high">0</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary);">Average Amount</div>
+                <div style="font-size: 1.3rem; font-weight: 700;" id="tx-stat-avg">₹0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter & Search Controls -->
+          <div style="display: flex; gap: 12px; margin-top: 20px; align-items: center; flex-wrap: wrap;">
+            <input type="text" id="tx-search-input" class="form-control" style="max-width: 320px;" placeholder="Search by recipient VPA, description, ID...">
+            <select id="tx-risk-filter" class="form-control" style="max-width: 180px;">
+              <option value="ALL">All Risk Tiers</option>
+              <option value="HIGH">High Risk Only</option>
+              <option value="MEDIUM">Medium Risk Only</option>
+              <option value="LOW">Low Risk Only</option>
+            </select>
+          </div>
+
+          <!-- Transactions Table -->
+          <div class="table-responsive" style="margin-top: 16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tx ID</th>
+                  <th>Date & Time</th>
+                  <th>Amount</th>
+                  <th>Type</th>
+                  <th>Recipient / VPA</th>
+                  <th>Description</th>
+                  <th>Risk Tier</th>
+                  <th>Flags / Behavioral Signals</th>
+                </tr>
+              </thead>
+              <tbody id="transactions-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. FRAUD ALERTS VIEW -->
+      <section class="view-section" id="view-fraud-alerts">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title"><i data-lucide="bell"></i> Active Fraud & Security Alerts</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                Real-time safety notifications triggered by high-risk detections.
+              </p>
+            </div>
+          </div>
+          <div id="alerts-list-container" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. ANALYSIS HISTORY VIEW -->
+      <section class="view-section" id="view-analysis-history">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title"><i data-lucide="history"></i> Full Analysis History</div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+                Audit log of all scanned collect requests, phishing messages, and transaction batches.
+              </p>
+            </div>
+            <button class="btn btn-danger btn-sm" id="btn-clear-history">
+              <i data-lucide="trash-2"></i> Clear History
+            </button>
+          </div>
+
+          <!-- Search & Filters -->
+          <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+            <input type="text" id="hist-search-input" class="form-control" style="max-width: 320px;" placeholder="Search history by summary...">
+            <select id="hist-category-filter" class="form-control" style="max-width: 220px;">
+              <option value="ALL">All Categories</option>
+              <option value="COLLECT_REQUEST">Collect Requests</option>
+              <option value="PHISHING_MESSAGE">Phishing Messages</option>
+              <option value="TRANSACTION_ANOMALY">Transaction Anomalies</option>
+            </select>
+            <select id="hist-risk-filter" class="form-control" style="max-width: 180px;">
+              <option value="ALL">All Risk Levels</option>
+              <option value="HIGH">High Risk</option>
+              <option value="MEDIUM">Medium Risk</option>
+              <option value="LOW">Low Risk</option>
+            </select>
+          </div>
+
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Summary</th>
+                  <th>Risk Tier</th>
+                  <th>Score</th>
+                  <th>Date & Time</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SECURITY INSIGHTS & EDUCATION VIEW -->
+      <section class="view-section" id="view-security-insights">
+        <div class="grid-2" style="margin-bottom: 24px;">
+          <div class="card">
+            <div class="card-title" style="color: var(--accent-primary);"><i data-lucide="shield"></i> The Cardinal UPI Security Rule</div>
+            <p style="margin-top: 12px; font-size: 0.95rem; line-height: 1.6;">
+              <strong>Entering your UPI PIN always DEBITS money from your bank account.</strong>
+              You <u>never</u> need to enter your UPI PIN, scan a QR code, or approve a collect request in order to receive money or cashback rewards. If someone asks you to enter your PIN to receive funds, it is guaranteed fraud.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title" style="color: var(--danger);"><i data-lucide="phone-call"></i> 1930 Cybercrime Golden Hour</div>
+            <p style="margin-top: 12px; font-size: 0.95rem; line-height: 1.6;">
+              If you have fallen victim to an unauthorized debit, dial the <strong>National Cyber Crime Helpline 1930</strong> immediately. Reporting within the first 2 hours ("Golden Hour") drastically increases the likelihood of freezing the stolen funds across nodal bank accounts.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-secondary); margin-bottom: 8px;">Electricity Bill Disconnection</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+              Scammers send fake SMS claiming power will be cut tonight at 9:30 PM. They provide a personal 10-digit number and ask you to install an APK file (AnyDesk) to steal banking credentials.
+            </p>
+          </div>
+          <div class="card">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--warning); margin-bottom: 8px;">Fake Bank KYC Deactivation</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+              Messages claiming your YONO SBI or NetBanking account is suspended due to PAN non-compliance. Links lead to cloned phishing portals that capture your login ID, password, and OTP.
+            </p>
+          </div>
+          <div class="card">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 8px;">OLX / Marketplace Advance Scam</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+              Buyer poses as an Army officer or genuine buyer, agrees to your item price without bargaining, and sends a "Collect Request" pretending to pay advance money.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. SETTINGS & SYSTEM STATUS VIEW -->
+      <section class="view-section" id="view-settings-view">
+        <div class="card" style="margin-bottom: 24px;">
+          <div class="card-title"><i data-lucide="server"></i> Platform Health & AI Services Status</div>
+          <div class="grid-2" style="margin-top: 20px;">
+            <div class="card" style="background-color: var(--bg-input);">
+              <div style="font-weight: 600; font-size: 0.9rem;">FastAPI Backend & Database</div>
+              <div style="font-size: 0.82rem; color: var(--accent-primary); margin-top: 4px;">Operational • SQLite / SQLAlchemy Engine</div>
+            </div>
+            <div class="card" style="background-color: var(--bg-input);">
+              <div style="font-weight: 600; font-size: 0.9rem;">NLP Phishing Classifier</div>
+              <div style="font-size: 0.82rem; color: var(--accent-primary); margin-top: 4px;">Loaded • TF-IDF + Logistic Regression (100% Accuracy)</div>
+            </div>
+            <div class="card" style="background-color: var(--bg-input);">
+              <div style="font-weight: 600; font-size: 0.9rem;">Transaction Anomaly Model</div>
+              <div style="font-size: 0.82rem; color: var(--accent-primary); margin-top: 4px;">Loaded • Isolation Forest + Velocity Engine</div>
+            </div>
+            <div class="card" style="background-color: var(--bg-input);">
+              <div style="font-weight: 600; font-size: 0.9rem;">Gemini AI Explainer</div>
+              <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px;" id="status-gemini">Configured / Deterministic Fallback Active</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title" style="color: var(--warning);"><i data-lucide="shield-alert"></i> Privacy Notice & Safe Architecture</div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-top: 12px;">
+            UPI Shield is an educational and analytical security platform. It never asks for, captures, or stores actual UPI PINs, bank passwords, OTPs, or card security codes. It does not initiate or process live payments and does not claim integration with NPCI or banking servers. All simulations are designed for awareness and defense.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- MODAL: ANALYSIS DETAILS VIEWER -->
+<div class="modal-overlay" id="modal-analysis-detail">
+  <div class="modal-box">
+    <button class="modal-close" onclick="window.app.closeModal('modal-analysis-detail')">&times;</button>
+    <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;" id="modal-detail-category">Analysis Detail</div>
+    <h3 style="margin-top: 4px; font-size: 1.15rem;" id="modal-detail-title">Assessment Report</h3>
+    
+    <div style="margin: 16px 0; display: flex; align-items: center; justify-content: space-between;">
+      <div class="risk-badge" id="modal-detail-badge">HIGH RISK</div>
+      <div style="font-size: 1.6rem; font-weight: 800;" id="modal-detail-score">92 <span>/ 100</span></div>
+    </div>
+
+    <div class="explanation-card">
+      <h4><i data-lucide="sparkles"></i> Contextual Explanation</h4>
+      <p id="modal-detail-explanation"></p>
+    </div>
+
+    <div style="font-weight: 700; font-size: 0.9rem; margin-top: 14px;">Triggered Risk Indicators:</div>
+    <div class="indicators-list" id="modal-detail-indicators"></div>
+
+    <div style="font-weight: 700; font-size: 0.9rem; margin-top: 14px;">Safety Recommendations:</div>
+    <ul id="modal-detail-recommendations" style="margin-left: 20px; font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;"></ul>
+  </div>
+</div>
+
+<!-- MODAL: MANUAL TRANSACTION ADD -->
+<div class="modal-overlay" id="modal-manual-tx">
+  <div class="modal-box">
+    <button class="modal-close" onclick="window.app.closeModal('modal-manual-tx')">&times;</button>
+    <h3 style="margin-bottom: 16px; font-size: 1.15rem;">Add Single Transaction for Analysis</h3>
+    <form id="form-manual-tx">
+      <div class="form-group">
+        <label class="form-label">Transaction ID</label>
+        <input type="text" id="manual-tx-id" class="form-control" value="UPI9999" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date and Time</label>
+        <input type="text" id="manual-tx-time" class="form-control" value="2026-11-15 02:45:00" required>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Amount (₹)</label>
+          <input type="number" step="0.01" id="manual-tx-amount" class="form-control" value="25000.00" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Transaction Type</label>
+          <select id="manual-tx-type" class="form-control">
+            <option value="DEBIT">DEBIT</option>
+            <option value="CREDIT">CREDIT</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Recipient / Sender VPA</label>
+        <input type="text" id="manual-tx-vpa" class="form-control" value="crypto.exchange@okaxis" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" id="manual-tx-desc" class="form-control" value="Express P2P Transfer">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Analyze Transaction</button>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- JAVASCRIPT MODULES -->
+<script src="/frontend/js/app.js"></script>
+<script src="/frontend/js/dashboard.js"></script>
+<script src="/frontend/js/collect_scanner.js"></script>
+<script src="/frontend/js/phishing_detector.js"></script>
+<script src="/frontend/js/transaction_detector.js"></script>
+<script src="/frontend/js/history.js"></script>
+
+<script>
+  // Initialize Lucide icons on load
+  document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+  });
+</script>
+</body>
+</html>
