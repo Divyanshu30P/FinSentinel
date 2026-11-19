@@ -1,5 +1,5 @@
 """
-UPI Shield - Sample Transaction Dataset Generator
+FinSentinel - Sample Transaction Dataset Generator
 Generates realistic Indian UPI & banking transaction statements
 containing normal patterns (Swiggy, Groceries, Utility, P2P friends, Salary)
 and intentional fraud scenarios (2:30 AM velocity drain, huge unverified collect, high-risk merchant).

@@ -28,8 +28,8 @@ class GeminiService:
         indicators_str = "\n".join(indicator_titles) if indicator_titles else "None detected"
 
         prompt = f"""
-You are the Security Explainer for 'UPI Shield', an AI-powered Indian financial fraud detection platform.
-Convert the technical fraud analysis into an empathetic, easy-to-understand explanation for an everyday Indian digital payment user.
+You are the Security Explainer for 'FinSentinel', an AI-powered financial fraud detection platform.
+Convert the technical fraud analysis into an empathetic, easy-to-understand explanation for an everyday digital payment user.
 
 Analysis Details:
 - Category: {category}

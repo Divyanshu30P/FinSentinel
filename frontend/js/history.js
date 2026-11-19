@@ -1,4 +1,4 @@
-// UPI Shield - Analysis History & Audit Log Controller
+// FinSentinel - Analysis History & Audit Log Controller
 class HistoryController {
   constructor() {
     this.historyRecords = [];

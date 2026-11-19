@@ -1,5 +1,5 @@
 """
-UPI Shield - Sample Screenshot Image Generator
+FinSentinel - Sample Screenshot Image Generator
 Creates realistic simulated screenshot images of:
 1. Electricity bill disconnection phishing SMS
 2. Bank KYC deactivation SMS

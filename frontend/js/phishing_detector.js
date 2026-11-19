@@ -1,4 +1,4 @@
-// UPI Shield - Module 2: Financial Phishing & SMS Scam Detector
+// FinSentinel - Module 2: Financial Phishing & SMS Scam Detector
 class PhishingDetectorController {
   constructor() {
     this.samples = {

@@ -2,7 +2,7 @@ from typing import List, Dict, Any, Tuple
 
 class UnifiedRiskEngine:
     """
-    Unified Risk Assessment Engine for UPI Shield.
+    Unified Risk Assessment Engine for FinSentinel.
     Combines rule-based indicators and ML predictions into a calibrated 0-100 risk score
     with human-explainable factor breakdown.
     """

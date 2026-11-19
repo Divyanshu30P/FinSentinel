@@ -1,13 +1,13 @@
-// UPI Shield - Core Application & Routing Controller
+// FinSentinel - Core Application & Routing Controller
 const API_BASE = '/api';
 
 class AppController {
   constructor() {
-    this.token = localStorage.getItem('upi_shield_token') || '';
-    const savedUser = localStorage.getItem('upi_shield_user');
+    this.token = localStorage.getItem('finsentinel_token') || '';
+    const savedUser = localStorage.getItem('finsentinel_user');
     this.currentUser = savedUser ? JSON.parse(savedUser) : {
       username: 'Aditya Sharma',
-      email: 'demo@upishield.local',
+      email: 'demo@finsentinel.local',
       is_demo: true
     };
     this.currentView = 'dashboard';
@@ -188,8 +188,8 @@ class AppController {
         is_demo: data.is_demo
       };
 
-      localStorage.setItem('upi_shield_token', this.token);
-      localStorage.setItem('upi_shield_user', JSON.stringify(this.currentUser));
+      localStorage.setItem('finsentinel_token', this.token);
+      localStorage.setItem('finsentinel_user', JSON.stringify(this.currentUser));
 
       this.closeModal('modal-auth');
       this.updateUserUI();
@@ -220,8 +220,8 @@ class AppController {
         is_demo: false
       };
 
-      localStorage.setItem('upi_shield_token', this.token);
-      localStorage.setItem('upi_shield_user', JSON.stringify(this.currentUser));
+      localStorage.setItem('finsentinel_token', this.token);
+      localStorage.setItem('finsentinel_user', JSON.stringify(this.currentUser));
 
       this.closeModal('modal-auth');
       this.updateUserUI();
@@ -238,8 +238,8 @@ class AppController {
       const data = await this.apiRequest('/auth/login', {
         method: 'POST',
         body: JSON.stringify({
-          email: 'demo@upishield.local',
-          password: 'DemoShield@2026'
+          email: 'demo@finsentinel.local',
+          password: 'FinSentinel@2026'
         })
       });
 
@@ -250,8 +250,8 @@ class AppController {
         is_demo: true
       };
 
-      localStorage.setItem('upi_shield_token', this.token);
-      localStorage.setItem('upi_shield_user', JSON.stringify(this.currentUser));
+      localStorage.setItem('finsentinel_token', this.token);
+      localStorage.setItem('finsentinel_user', JSON.stringify(this.currentUser));
 
       this.closeModal('modal-auth');
       const dropdown = document.getElementById('user-dropdown-menu');
@@ -267,8 +267,8 @@ class AppController {
 
   logoutUser() {
     this.token = '';
-    localStorage.removeItem('upi_shield_token');
-    localStorage.removeItem('upi_shield_user');
+    localStorage.removeItem('finsentinel_token');
+    localStorage.removeItem('finsentinel_user');
 
     const dropdown = document.getElementById('user-dropdown-menu');
     if (dropdown) dropdown.classList.remove('active');
@@ -276,7 +276,7 @@ class AppController {
     // Default to clean state or open login
     this.currentUser = {
       username: 'Guest User',
-      email: 'guest@upishield.local',
+      email: 'guest@finsentinel.local',
       is_demo: false
     };
     this.updateUserUI();

@@ -1,4 +1,4 @@
-// UPI Shield - Module 1: Fake UPI Collect Request Detector
+// FinSentinel - Module 1: Fake UPI Collect Request Detector
 class CollectScannerController {
   constructor() {
     this.presets = {

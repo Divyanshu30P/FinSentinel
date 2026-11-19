@@ -1,8 +1,8 @@
-# UPI Shield - AI-Powered Financial Scam & Fraud Detection Platform
+# FinSentinel - AI-Powered Financial Scam & Fraud Detection Platform
 
 <div align="center">
 
-![UPI Shield Banner](https://img.shields.io/badge/UPI%20Shield-Fintech%20Cybersecurity-35C99A?style=for-the-badge&logo=shield&logoColor=white)
+![FinSentinel Banner](https://img.shields.io/badge/FinSentinel-Fintech%20Cybersecurity-35C99A?style=for-the-badge&logo=shield&logoColor=white)
 [![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-5599FF.svg?style=flat-square)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.4+-F7931E.svg?style=flat-square&logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
@@ -34,11 +34,11 @@
 
 ## 🛡️ Project Overview
 
-**UPI Shield** is an AI-powered financial fraud detection platform built for the Indian digital payment landscape.
+**FinSentinel** is an AI-powered financial fraud detection platform built for the Indian digital payment landscape.
 
 With India's Unified Payments Interface (UPI) processing over 14 billion transactions monthly, everyday users face an escalating onslaught of social engineering attacks: deceptive collect requests claiming you must enter your PIN to receive money, fake electricity disconnection warnings, cloned bank KYC portals, and rapid nocturnal account drains.
 
-UPI Shield combines:
+FinSentinel combines:
 - **Natural Language Processing (TF-IDF + Logistic Regression)** trained on real Indian banking and reported SMS scam patterns.
 - **Unsupervised Anomaly Detection (Isolation Forest)** to catch sudden velocity and behavioral deviation spikes.
 - **Rule-based Security Heuristics** with critical PIN deception overrides.
@@ -46,7 +46,7 @@ UPI Shield combines:
 - **Client-side visual text highlighting** and **Screenshot OCR analysis**.
 - **Normal Mode (Public Live Usage)**: Multi-tenant user registration and secure authentication with data isolation, alongside a pre-seeded showcase environment.
 
-> **Note on Ethical Design**: UPI Shield is an analytical and defense tool. It never asks for, captures, or stores actual UPI PINs, bank passwords, or OTPs. It does not process live payments and does not claim official affiliation with NPCI or banks.
+> **Note on Ethical Design**: FinSentinel is an analytical and defense tool. It never asks for, captures, or stores actual UPI PINs, bank passwords, or OTPs. It does not process live payments and does not claim official affiliation with NPCI or banks.
 
 ---
 
@@ -140,7 +140,7 @@ flowchart TD
 #### Holdout Test Set Performance Metrics:
 ```
 ============================================================
-          UPI SHIELD ML MODEL PERFORMANCE REPORT          
+          FINSENTINEL ML MODEL PERFORMANCE REPORT          
 ============================================================
 Model:           TF-IDF + Logistic Regression
 Dataset Size:    700 samples (Balanced)
@@ -275,7 +275,7 @@ A sample profile is preloaded with authentic attack scenarios (night velocity dr
 
 ## 🛡️ Ethical Safeguards & Privacy Notice
 
-1. **Zero Credential Ingestion**: UPI Shield never requests or stores UPI PINs, NetBanking passwords, card numbers, or live OTPs.
+1. **Zero Credential Ingestion**: FinSentinel never requests or stores UPI PINs, NetBanking passwords, card numbers, or live OTPs.
 2. **User Data Isolation**: Relational database foreign keys strictly segregate each user's analysis history.
 3. **No Automatic URL Traversal**: The platform never automatically opens links detected in messages or screenshots, preventing drive-by malware infections.
 4. **Third-Party AI Isolation**: Gemini API requests only include sanitized analysis summaries and threat indicators without personally identifiable information.

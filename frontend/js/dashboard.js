@@ -1,4 +1,4 @@
-// UPI Shield - Dashboard & Analytics Controller
+// FinSentinel - Dashboard & Analytics Controller
 class DashboardController {
   constructor() {
     this.activityChart = null;

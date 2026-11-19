@@ -1,8 +1,8 @@
-# UPI Shield - System Architecture Specification
+# FinSentinel - System Architecture Specification
 
 ## Overview
 
-UPI Shield is a cybersecurity fintech application built specifically to protect Indian digital payment users from deceptive UPI collect requests, phishing communications, and suspicious financial transaction patterns.
+FinSentinel is a cybersecurity fintech application built specifically to protect digital payment users from deceptive UPI collect requests, phishing communications, and suspicious financial transaction patterns.
 
 ---
 

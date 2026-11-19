@@ -1,5 +1,5 @@
 """
-UPI Shield - Phishing Classification Model Training
+FinSentinel - Phishing Classification Model Training
 Trains a TF-IDF Vectorizer + Logistic Regression pipeline
 Evaluates real test set performance metrics and persists the model.
 """

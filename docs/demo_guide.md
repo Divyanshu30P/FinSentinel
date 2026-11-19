@@ -1,6 +1,6 @@
-# UPI Shield - Product Walkthrough & Demonstration Guide
+# FinSentinel - Product Walkthrough & Demonstration Guide
 
-**Project**: UPI Shield  
+**Project**: FinSentinel  
 **Domain**: Financial Cybersecurity & Scam Detection  
 
 ---
@@ -9,7 +9,7 @@
 
 | Stage | Focus | Action / Highlights |
 |---|---|---|
-| **Overview** | **Threat Landscape** | Introduce UPI Shield: Digital payment fraud landscape in India (1930 helpline statistics, fake collect requests, electricity SMS scams). |
+| **Overview** | **Threat Landscape** | Introduce FinSentinel: Digital payment fraud landscape (1930 helpline statistics, fake collect requests, electricity SMS scams). |
 | **Phishing Detector** | **NLP & Entity Analysis** | Click "⚡ Electricity Bill Threat", run scan, show highlighted malicious spans, TF-IDF + Logistic Regression ML classification, and AI explanation. |
 | **Collect Scanner** | **PIN Deception Defense** | Click "Diwali Reward PIN Scam", explain that typing a UPI PIN *debits* money, show High Risk assessment and clear safety steps. |
 | **Transaction Analyser** | **Behavioral Anomalies** | Click "Load Demo Statement", demonstrate Isolation Forest & velocity detector catching the 2:41 AM 3-part bank drain attack. |
@@ -21,7 +21,7 @@
 ## Step-by-Step Demonstration Script
 
 ### 1. Introduction
-> *"India's UPI ecosystem processes over 14 billion transactions monthly. However, users face an escalating onslaught of social engineering attacks: deceptive collect requests, phishing SMS, and account drain bursts. **UPI Shield: Detect. Analyse. Protect.** is built specifically for Indian payment scenarios with lightweight machine learning and explainable AI."*
+> *"Digital payment ecosystems process over 14 billion transactions monthly. However, users face an escalating onslaught of social engineering attacks: deceptive collect requests, phishing SMS, and account drain bursts. **FinSentinel: Detect. Analyse. Protect.** is built specifically for digital payment scenarios with lightweight machine learning and explainable AI."*
 
 ### 2. Phishing Message Detection
 1. In the sidebar, click **Phishing Detector**.

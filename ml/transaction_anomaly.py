@@ -1,5 +1,5 @@
 """
-UPI Shield - Transaction Anomaly Detection Model Training
+FinSentinel - Transaction Anomaly Detection Model Training
 Trains an Isolation Forest model on multi-dimensional transaction features:
 Amount, Timing, Velocity, and Recipient Novelty.
 """

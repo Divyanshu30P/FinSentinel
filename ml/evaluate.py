@@ -1,5 +1,5 @@
 """
-UPI Shield - Evaluation CLI Script
+FinSentinel - Evaluation CLI Script
 Loads the saved TF-IDF vectorizer and Logistic Regression model,
 runs inference on test samples, prints confusion matrix and classification metrics.
 """
@@ -20,7 +20,7 @@ def run_evaluation():
         with open(metrics_path, "r", encoding="utf-8") as f:
             metrics = json.load(f)
         print("="*60)
-        print("          UPI SHIELD ML MODEL PERFORMANCE REPORT          ")
+        print("          FINSENTINEL ML MODEL PERFORMANCE REPORT          ")
         print("="*60)
         print(f"Model:           {metrics.get('model_name')}")
         print(f"Total Samples:   {metrics.get('dataset_size')}")

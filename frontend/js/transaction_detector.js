@@ -1,4 +1,4 @@
-// UPI Shield - Module 3: Suspicious Transaction & Anomaly Analyser
+// FinSentinel - Module 3: Suspicious Transaction & Anomaly Analyser
 class TransactionDetectorController {
   constructor() {
     this.transactions = [];

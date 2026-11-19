@@ -34,7 +34,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
-    description="AI-Powered Financial Fraud Detection Platform for Indian Digital Payments (UPI).",
+    description="AI-Powered Financial Fraud Detection Platform for Digital Payments & Banking.",
     lifespan=lifespan,
     docs_url="/docs",
     redoc_url="/redoc"

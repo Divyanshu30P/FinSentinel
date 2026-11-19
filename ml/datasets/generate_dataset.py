@@ -1,5 +1,5 @@
 """
-UPI Shield - Comprehensive Dataset Generator for Financial Phishing & SMS Scam Detection
+FinSentinel - Comprehensive Dataset Generator for Financial Phishing & SMS Scam Detection
 Combines real Indian banking SMS patterns, reported cybercrime templates (1930 helpline),
 and legitimate financial communications.
 """
