@@ -199,8 +199,8 @@ Double-click `run.bat` in the project root. It will:
 
 1. **Clone the repository:**
    ```powershell
-   git clone https://github.com/your-username/upi-shield.git
-   cd upi-shield
+   git clone https://github.com/Divyanshu30P/FinSentinel.git
+   cd FinSentinel
    ```
 
 2. **Install dependencies:**
