@@ -9,7 +9,6 @@ import sys
 import numpy as np
 import pandas as pd
 import joblib
-from sklearn.ensemble import IsolationForest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -75,6 +74,7 @@ def extract_features(df: pd.DataFrame) -> pd.DataFrame:
     return features
 
 def train_isolation_forest():
+    from sklearn.ensemble import IsolationForest
     csv_path = "ml/datasets/sample_transactions.csv"
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"Transactions dataset not found at {csv_path}")
